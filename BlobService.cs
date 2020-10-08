@@ -26,6 +26,8 @@ namespace WebUpload
             var containerClient = GetContainerClient(blobContainerName);
 
             var blobClient = containerClient.GetBlobClient(fileName);
+
+            // To overwrite blob true param has been passed. By default it's false.
             await blobClient.UploadAsync(fileStream, true);
 
             return true;
@@ -73,7 +75,6 @@ namespace WebUpload
 
                 return sasBlobUri;
             }
-
 
             return "";
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace WebUpload.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class FileUploadController : ControllerBase
     {
         private readonly ILogger<FileUploadController> _logger;
@@ -28,7 +28,7 @@ namespace WebUpload.Controllers
             return _blobService.DownloadFileBlobAsync(ContainerName, fileName);
         }
 
-        [HttpPost, RequestSizeLimit(30000000)] // request size can be set at kestrel level
+        [HttpPost, RequestSizeLimit(50000000)] // Request Size Limit set to 50 MB . Request size can also be set at kestrel level
         public async Task<ActionResult> Post(ICollection<IFormFile> files)
         {
             bool isUploaded = false;
